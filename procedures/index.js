@@ -67,14 +67,12 @@ var instructions = {
   stimulus: `
         <div class="text" id="instruction">
             <img src="../images/stanford_logo.png" alt="stanford logo" width="180" height="80">
-            <p><b>Only complete this study if you are a Singaporean citizen or Singapore Permanent Resident (PR) who is 18 years old or older.</b></p>
-            <p>Please share this link with other Singaporean citizens and Singapore PRs, but <u>do not participate in this study more than once</u>.
-            <BR>You will not be compensated more than once.</p> 
-            <p>In this experiment, you will be listening to pairs of audio clips.</p>
+            <p>In this experiment, you will be listening to pairs of audio clips that are spoken by people from Singapore.</p>
             <p>Each pair of audio clips will be played once in consecutive order. Your task is to decide which one of the clips sounds more Singlish.</p>
+            <p>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</p>
             <p>Please ensure that you use earphones or headphones for the duration of this experiment.</p>
             <p>This experiment should be completed on a <b><u>desktop or laptop</u></b> using the <b><u>Google Chrome browser</u></b>.</p>
-            <p>The experiment will take approximately 40 minutes. You will be compensated 7 SGD for your time.</p>
+            <p>The experiment will take approximately 40 minutes. You will be compensated XX USD for your time.</p>
         </div>
       `,
   choices: ["Continue"],
@@ -216,10 +214,10 @@ var survey1 = {
         prompt: `<p style="color: #000000">Please answer the following questions:</p>`,
       },
       {
-        type: 'multi-choice',
-        prompt: "What is your citizenship status?",
-        name: 'citizenship',
-        options: ['Singaporean', 'Singapore PR', 'None of the above', 'Prefer not to answer'],
+        type: 'drop-down',
+        prompt: "What state are you from?",
+        name: 'state',
+        options: ['State 1', 'State 2', 'None of the above', 'Prefer not to answer'],
         required: true
       },
       {
@@ -238,14 +236,14 @@ var survey1 = {
       },
       {
         type: 'multi-select',
-        prompt: "What is your race? Please select all that apply.",
+        prompt: "What is your ethnicity? Please select all that apply.",
         name: 'race',
         options: ['Chinese', 'Malay', 'Indian', 'Other', 'Prefer not to answer'],
         required: true,
       },
       {
         type: 'text',
-        prompt: "What is your estimated total monthly household income (in Singapore dollars)?",
+        prompt: "What is your estimated total monthly household income (in US dollars)?",
         name: 'income',
         textbox_columns: 8,
         input_type: "number",
@@ -255,7 +253,7 @@ var survey1 = {
         type: 'multi-choice',
         prompt: "What is your highest level of education?",
         name: 'education',
-        options: ['No qualification', 'Primary school', 'Secondary school', 'Junior college/Polytechnic', 'Undergraduate degree', 'Postgraduate degree', 'Prefer not to answer'],
+        options: ['No qualification', 'Elementary school', 'Middle school', 'High school', 'Undergraduate degree', 'Postgraduate degree', 'Prefer not to answer'],
         required: false,
       }
     ]
@@ -269,7 +267,7 @@ var survey2a = {
   type: jsPsychSurveyHtmlForm,
   preamble: `<p>What languages do you speak?</p>
   <p>Please indicate up to 5 languages and list them <b>in order of descending frequency of use</b>, i.e., Language 1 is the most frequently spoken language, Language 2 the second-most frequently spoken language, and so on.</p>
-  <p>For example, if English is Language 1, Malay is Language 2, and Hokkien is Language 3, that means you speak English the most frequently, Malay the second-most frequently, and Hokkien the least frequently.
+  <p>For example, if English is Language 1, Spanish is Language 2, and Portuguese is Language 3, that means you speak English the most frequently, Spanish the second-most frequently, and Portuguese the least frequently.
   </p>`,
   html: `<p>
   <input name="lang1" type="text" placeholder="Language 1" required><BR><BR>
@@ -287,61 +285,24 @@ var survey2b = {
     [
       {
         type: 'multi-choice',
-        prompt: "Do you speak Singlish?",
-        name: 'singlish',
+        prompt: "Have you ever interacted with someone from Singapore?",
+        name: 'singapore_interact',
         options: ['Yes', 'No'],
-        required: true,
-      },
-      {
-        type: 'text',
-        prompt: "How many hours a day do you spend interacting in Singlish?",
-        name: 'singlish_hours',
-        input_type: "number",
         required: true,
       },
       {
         type: 'multi-choice',
-        prompt: "Do your friends speak Singlish?",
-        name: 'singlish_friends',
+        prompt: "Have you ever visited Singapore?",
+        name: 'singapore_visit',
         options: ['Yes', 'No'],
         required: true,
       },
       {
-        type: 'likert',
-        prompt: "How often do your friends speak Singlish?",
-        name: 'singlish_friends_frequency',
-        required: true,
-        likert_scale_min_label: 'Never',
-        likert_scale_max_label: 'All the time',
-        likert_scale_values: [
-          { value: 1 },
-          { value: 2 },
-          { value: 3 },
-          { value: 4 },
-          { value: 5 }
-        ]
-      },
-      {
-        type: 'multi-choice',
-        prompt: "Does your family speak Singlish?",
-        name: 'singlish_family',
-        options: ['Yes', 'No'],
-        required: true,
-      },
-      {
-        type: 'likert',
-        prompt: "How often does your family speak Singlish?",
-        name: 'singlish_family_frequency',
-        required: true,
-        likert_scale_min_label: 'Never',
-        likert_scale_max_label: 'All the time',
-        likert_scale_values: [
-          { value: 1 },
-          { value: 2 },
-          { value: 3 },
-          { value: 4 },
-          { value: 5 }
-        ]
+        type: 'drop-down',
+        prompt: "If you have visited Singapore before, what is the year of your most recent visit?",
+        name: 'singapore_visit_year',
+        options: ['2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995', '1994', '1993', '1992', '1991', '1990', '1989', '1988', '1987', '1986', '1985', '1984', '1983', '1982', '1981', '1980', '1979', '1978', '1977', '1976', '1975', '1974', '1973', '1972', '1971', '1970', '1969', '1968', '1967', '1966', '1965', '1964', '1963', '1962', '1961', '1960', '1959', '1958', '1957', '1956', '1955', '1954', '1953', '1952', '1951', '1950', '1949', '1948', '1947', '1946', '1945', '1944', '1943', '1942', '1941', '1940', '1939', '1938', '1937', '1936', '1935', '1934', '1933', 'Prefer not to answer'],
+        required: false,
       },
     ],
   ],
