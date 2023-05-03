@@ -412,7 +412,7 @@ var emotion = {
 };
 timeline.push(emotion);
 
-/* future study? */
+/* future study?
 var futurestudies = {
   type: jsPsychSurvey,
   pages: [
@@ -429,6 +429,7 @@ var futurestudies = {
   button_label_finish: 'Continue',
 };
 timeline.push(futurestudies);
+*/
 
 /* payment information
 var payment = {
