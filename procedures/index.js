@@ -37,12 +37,14 @@ var preload_trial = {
 timeline.push(preload_practice);
 timeline.push(preload_trial);
 
+/*
 var stopCollection = {
     type: jsPsychHtmlKeyboardResponse,
     stimulus: '<p>This study is currently not accepting new participants. Please check back again in the future.</p>',
     choices: "NO_KEYS",
 };
 timeline.push(stopCollection);
+*/
 
 // browser check
 /*
@@ -147,9 +149,10 @@ var practiceinstructions = {
   stimulus: `
   <center>
         <p>You will now begin the practice trials.</p>
-        <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers.</p>
+        <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers from Singapore.</p>
         <p>Each audio clip will only be played once and you will not be able to replay them.</p>
         <p><strong>Your task is to decide which clip sounds more Singlish.</strong></p>
+        <p><strong>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</strong></p>
         <p>You might hear some clips that sound similar to each other, but please do your best to respond as quickly as possible.</p>
         <p>Please place your left index finger on the "S" key and your right index finger on the "L" key.</p>
         <p><img src="../procedures/keyboard.png" width="500" style="margin-top:-10px"></p>
@@ -157,7 +160,7 @@ var practiceinstructions = {
         <p>If the <strong>second clip</strong> sounds more Singlish, please <strong>press L</strong>.</p>
         <p><b>Respond as quickly as possible when both clips have finished playing.</b></p>
         <p>This is a timed task. If you do not respond in time, the next question will appear automatically.</p>
-        <p><b>Please answer as quickly and accurately as possible.</b></p> 
+        <p><b>Please answer as quickly and accurately as possible.</b></p>
   </center>
         `,
   choices: ["Continue"],
@@ -178,9 +181,10 @@ var realinstructions = {
   stimulus: `
   <center>
         <p>You will now begin the experiment.</p>
-        <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers.</p>
+        <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers from Singapore.</p>
         <p>Each audio clip will only be played once and you will not be able to replay them.</p>
         <p><strong>Your task is to decide which clip sounds more Singlish.</strong></p>
+        <p><strong>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</strong></p>
         <p>You might hear some clips that sound similar to each other, but please do your best to respond as quickly as possible.</p>
         <p>Please place your left index finger on the "S" key and your right index finger on the "L" key.</p>
         <p><img src="../procedures/keyboard.png" width="500" style="margin-top:-10px"></p>
@@ -188,7 +192,7 @@ var realinstructions = {
         <p>If the <strong>second clip</strong> sounds more Singlish, please <strong>press L</strong>.</p>
         <p><b>Respond as quickly as possible when both clips have finished playing.</b></p>
         <p>This is a timed task. If you do not respond in time, the next question will appear automatically.</p>
-        <p><b>Please answer as quickly and accurately as possible.</b></p> 
+        <p><b>Please answer as quickly and accurately as possible.</b></p>
   </center>
         `,
   choices: ["Continue"],
@@ -217,8 +221,8 @@ var survey1 = {
         type: 'drop-down',
         prompt: "What state are you from?",
         name: 'state',
-        options: ['State 1', 'State 2', 'None of the above', 'Prefer not to answer'],
-        required: true
+        options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Colorado', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Mexico', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'South Carolina', 'South Dakota', 'Tennessee', 'Utah', 'Vermont', 'West Virginia', 'Wyoming', 'Prefer not to answer'],
+        required: true,
       },
       {
         type: 'multi-choice',
@@ -236,9 +240,9 @@ var survey1 = {
       },
       {
         type: 'multi-select',
-        prompt: "What is your ethnicity? Please select all that apply.",
+        prompt: "What is your race? Please select all that apply.",
         name: 'race',
-        options: ['Chinese', 'Malay', 'Indian', 'Other', 'Prefer not to answer'],
+        options: ['American Indian or Alaskan Native', 'Asian', 'Black or African American', 'Hispanic or Latino', 'Native Hawaiian or Other Pacific Islander', 'White', 'Prefer not to answer'],
         required: true,
       },
       {
@@ -254,7 +258,7 @@ var survey1 = {
         prompt: "What is your highest level of education?",
         name: 'education',
         options: ['No qualification', 'Elementary school', 'Middle school', 'High school', 'Undergraduate degree', 'Postgraduate degree', 'Prefer not to answer'],
-        required: false,
+        required: true,
       }
     ]
   ],
@@ -285,10 +289,18 @@ var survey2b = {
     [
       {
         type: 'multi-choice',
-        prompt: "Have you ever interacted with someone from Singapore?",
+        prompt: "Have you ever interacted with people from Singapore?",
         name: 'singapore_interact',
         options: ['Yes', 'No'],
         required: true,
+      },
+      {
+        type: 'text',
+        prompt: "If you have interacted with people from Singapore before, please provide more details about these interactions. For example, if you have one Singaporean coworker and you eat lunch together everyday, please indicate this.",
+        name: 'singapore_interact_description',
+        textbox_rows: 3,
+        placeholder: `Example: There were some Singaporeans in my dorm when I was attending college and I talked to them occasionally, but I was not close friends with any Singaporeans.`,
+        required: false,
       },
       {
         type: 'multi-choice',
@@ -302,6 +314,14 @@ var survey2b = {
         prompt: "If you have visited Singapore before, what is the year of your most recent visit?",
         name: 'singapore_visit_year',
         options: ['2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001', '2000', '1999', '1998', '1997', '1996', '1995', '1994', '1993', '1992', '1991', '1990', '1989', '1988', '1987', '1986', '1985', '1984', '1983', '1982', '1981', '1980', '1979', '1978', '1977', '1976', '1975', '1974', '1973', '1972', '1971', '1970', '1969', '1968', '1967', '1966', '1965', '1964', '1963', '1962', '1961', '1960', '1959', '1958', '1957', '1956', '1955', '1954', '1953', '1952', '1951', '1950', '1949', '1948', '1947', '1946', '1945', '1944', '1943', '1942', '1941', '1940', '1939', '1938', '1937', '1936', '1935', '1934', '1933', 'Prefer not to answer'],
+        required: false,
+      },
+      {
+        type: 'text',
+        prompt: "If you have visited Singapore multiple times, please provide more details about these visits. For example, if you visit Singapore about once a year for business trips, please indicate this.",
+        name: 'singapore_visit_description',
+        textbox_rows: 3,
+        placeholder: `Example: I have only visited Singapore two times in my life, and both trips were in the last ten years. The first time I went was for a friend's wedding; the second time was as part of my vacation in Southeast Asia.`,
         required: false,
       },
     ],
@@ -410,7 +430,7 @@ var futurestudies = {
 };
 timeline.push(futurestudies);
 
-/* payment information */
+/* payment information
 var payment = {
   type: jsPsychSurveyText,
   questions: [
@@ -425,6 +445,7 @@ var payment = {
   ]
 };
 timeline.push(payment);
+*/
 
 /* thank you */
 const thankyou = {
