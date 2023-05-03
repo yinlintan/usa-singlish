@@ -454,7 +454,7 @@ const thankyou = {
         <div class="text" id="trial">
             <p>Thank you for completing the experiment!</p>
             <p>We will contact you soon to arrange for participant reimbursement.</p>
-            <p>Please click the "Submit" button to submit your responses and complete the study.</p>
+            <p>Please click the "Submit" button to complete the study and wait until you are redirected to Prolific.</p>
         </div>
       `,
   choices: ["Submit"],
