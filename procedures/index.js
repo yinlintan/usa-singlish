@@ -2,12 +2,16 @@
 var jsPsych = initJsPsych({
   show_progress_bar: true,
   on_finish: function () {
-    //jsPsych.data.displayData();
-    window.location = "https://yinlintan.github.io/singlish/procedures/thanks.html";
+    jsPsych.data.displayData();
+    //window.location = "https://yinlintan.github.io/usa-singlish/procedures/thanks.html";
     proliferate.submit({ "trials": jsPsych.data.get().values() });
   },
   default_iti: 250
 });
+
+// set approved previous work to 96% (Approval Rate)
+// US-based, self-reported native English speakers
+// run studies on WEEKDAYS in the MORNING (as early as possible California time)
 
 /* create timeline */
 var timeline = [];
@@ -70,11 +74,11 @@ var instructions = {
         <div class="text" id="instruction">
             <img src="../images/stanford_logo.png" alt="stanford logo" width="180" height="80">
             <p>In this experiment, you will be listening to pairs of audio clips that are spoken by people from Singapore.</p>
+            <p>You will be hearing two kinds of English spoken in Singapore. One of these is Singlish, which is spoken among friends. The other one is used in school.</p>
             <p>Each pair of audio clips will be played once in consecutive order. Your task is to decide which one of the clips sounds more Singlish.</p>
-            <p>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</p>
             <p>Please ensure that you use earphones or headphones for the duration of this experiment.</p>
             <p>This experiment should be completed on a <b><u>desktop or laptop</u></b> using the <b><u>Google Chrome browser</u></b>.</p>
-            <p>The experiment will take approximately 40 minutes. You will be compensated XX USD for your time.</p>
+            <p>The experiment will take approximately 40 minutes. You will be compensated 8 USD for your time.</p>
         </div>
       `,
   choices: ["Continue"],
@@ -152,7 +156,7 @@ var practiceinstructions = {
         <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers from Singapore.</p>
         <p>Each audio clip will only be played once and you will not be able to replay them.</p>
         <p><strong>Your task is to decide which clip sounds more Singlish.</strong></p>
-        <p><strong>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</strong></p>
+        <p><strong>Singlish is a type of English that is spoken in Singapore and usually used among friends.</strong></p>
         <p>You might hear some clips that sound similar to each other, but please do your best to respond as quickly as possible.</p>
         <p>Please place your left index finger on the "S" key and your right index finger on the "L" key.</p>
         <p><img src="../procedures/keyboard.png" width="500" style="margin-top:-10px"></p>
@@ -184,7 +188,7 @@ var realinstructions = {
         <p>In each trial, two audio clips will play one after another. You will hear a variety of sentences and phrases spoken by different talkers from Singapore.</p>
         <p>Each audio clip will only be played once and you will not be able to replay them.</p>
         <p><strong>Your task is to decide which clip sounds more Singlish.</strong></p>
-        <p><strong>Singlish is a type of English that is spoken in Singapore. Some of the audio clips that you will hear are Singlish and others are not, but all of them are spoken by Singaporean speakers.</strong></p>
+        <p><strong>Singlish is a type of English that is spoken in Singapore and usually used among friends.</strong></p>
         <p>You might hear some clips that sound similar to each other, but please do your best to respond as quickly as possible.</p>
         <p>Please place your left index finger on the "S" key and your right index finger on the "L" key.</p>
         <p><img src="../procedures/keyboard.png" width="500" style="margin-top:-10px"></p>
@@ -219,8 +223,15 @@ var survey1 = {
       },
       {
         type: 'drop-down',
-        prompt: "What state are you from?",
-        name: 'state',
+        prompt: "What state were you born in?",
+        name: 'state_born',
+        options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Colorado', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Mexico', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'South Carolina', 'South Dakota', 'Tennessee', 'Utah', 'Vermont', 'West Virginia', 'Wyoming', 'Prefer not to answer'],
+        required: true,
+      },
+      {
+        type: 'drop-down',
+        prompt: "What state are you currently living in?",
+        name: 'state_current',
         options: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'Colorado', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Mexico', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'South Carolina', 'South Dakota', 'Tennessee', 'Utah', 'Vermont', 'West Virginia', 'Wyoming', 'Prefer not to answer'],
         required: true,
       },
@@ -257,7 +268,7 @@ var survey1 = {
         type: 'multi-choice',
         prompt: "What is your highest level of education?",
         name: 'education',
-        options: ['No qualification', 'Elementary school', 'Middle school', 'High school', 'Undergraduate degree', 'Postgraduate degree', 'Prefer not to answer'],
+        options: ['No qualification', 'Elementary school', 'Middle school', 'High school', 'College degree', 'Postgraduate degree', 'Prefer not to answer'],
         required: true,
       }
     ]
@@ -351,7 +362,7 @@ var survey3b = {
       },
       {
         type: 'text',
-        prompt: "What is Singlish? Give a definition.",
+        prompt: "What do you think is Singlish? Give a definition.",
         name: 'singlish_definition',
         required: true,
       },
@@ -367,28 +378,6 @@ var survey3b = {
   button_label_finish: 'Continue',
 };
 timeline.push(survey3b);
-
-/* survey 4: language attitude questions */
-var likert_scale = [
-  "Strongly Disagree",
-  "Disagree",
-  "Neutral",
-  "Agree",
-  "Strongly Agree"
-];
-
-var survey4 = {
-  type: jsPsychSurveyLikert,
-  preamble: `Please rate how much you agree or disagree with the following statements.`,
-  questions: [
-    { prompt: "Singlish is just bad English.", name: 'likert_badenglish', labels: likert_scale, required: true },
-    { prompt: "Singlish is the only thing that really makes us Singaporean.", name: 'likert_singaporean', labels: likert_scale, required: true },
-    { prompt: "Singlish unites the different races of Singapore.", name: 'likert_race', labels: likert_scale, required: true },
-    { prompt: "It would be better for Singapore if Singlish did not exist.", name: 'likert_exist', labels: likert_scale, required: true },
-  ],
-  randomize_question_order: true,
-};
-timeline.push(survey4);
 
 /* emotion scale */
 var emotion = {
@@ -454,7 +443,6 @@ const thankyou = {
   stimulus: `
         <div class="text" id="trial">
             <p>Thank you for completing the experiment!</p>
-            <p>We will contact you soon to arrange for participant reimbursement.</p>
             <p>Please click the "Submit" button to complete the study and wait until you are redirected to Prolific.</p>
         </div>
       `,
