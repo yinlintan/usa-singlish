@@ -437,6 +437,42 @@ var payment = {
 timeline.push(payment);
 */
 
+/* feedback about the study */
+const study_feedback = {
+  type: jsPsychSurvey,
+  pages: [
+    [
+      {
+        type: 'multi-choice',
+        prompt: 'Did you read the instructions and do you think you did the task correctly?',
+        name: 'instructions_correct',
+        options: ['Yes', 'No', 'I was confused']
+      },
+      {
+        type: 'drop-down',
+        prompt: 'Do you think the payment was fair?',
+        name: 'fair',
+        options: ['The payment was too low', 'The payment was fair']
+      },
+      {
+        type: 'drop-down',
+        prompt: 'Did you enjoy the experiment?',
+        name: 'enjoy',
+        options: ['Worse than the average experiment', 'An average experiment', 'Better than the average experiment']
+      },
+      {
+        type: 'text',
+        prompt: 'Do you have any other comments about this experiment?',
+        name: 'comments',
+        textbox_columns: 30,
+        textbox_rows: 4
+      }
+    ]
+  ],
+  button_label_finish: 'Continue',
+};
+timeline.push(study_feedback);
+
 /* thank you */
 const thankyou = {
   type: jsPsychHtmlButtonResponse,
