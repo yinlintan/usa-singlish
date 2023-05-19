@@ -2,7 +2,7 @@
 var jsPsych = initJsPsych({
   show_progress_bar: true,
   on_finish: function () {
-    jsPsych.data.displayData();
+    //jsPsych.data.displayData();
     //window.location = "https://yinlintan.github.io/usa-singlish/procedures/thanks.html";
     proliferate.submit({"trials": data.values()});
   },
