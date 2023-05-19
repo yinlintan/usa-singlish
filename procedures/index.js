@@ -4,7 +4,7 @@ var jsPsych = initJsPsych({
   on_finish: function () {
     //jsPsych.data.displayData();
     //window.location = "https://yinlintan.github.io/usa-singlish/procedures/thanks.html";
-    proliferate.submit({"trials": data.values()});
+    proliferate.submit({ "trials": jsPsych.data.get().values() });
   },
   default_iti: 250
 });
